@@ -8,19 +8,22 @@
   ],
   "media": [
     {
-      "type": "image",
+      "type": "video",
       "src": "media/visuals/sra_tomasa/sra_tomasa01.gif",
-      "alt": "LA SRA. TOMASA LIVE"
+      "alt": "LA SRA. TOMASA LIVE",
+      "externalLink": "www.youtube.com/embed/DypiY-ML15E?si=ZTW5x43zTFmeBUUZ"
     },
     {
-      "type": "image",
+      "type": "video",
       "src": "media/visuals/sra_tomasa/sra_tomasa02.gif",
-      "alt": "LA SRA. TOMASA LIVE"
+      "alt": "LA SRA. TOMASA LIVE",
+      "externalLink": "www.youtube.com/embed/kp1QSEPr4x4?si=4qsK4ogDE8Y84anJ"
     },
     {
-      "type": "image",
+      "type": "video",
       "src": "media/visuals/sra_tomasa/sra_tomasa03.gif",
-      "alt": "LA SRA. TOMASA LIVE"
+      "alt": "LA SRA. TOMASA LIVE",
+      "externalLink": "https://youtube.com/shorts/XuohfQkae1c?si=SrpnORKUkWwDrqDq"
     }
   ],
   "tags": [
