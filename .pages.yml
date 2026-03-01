@@ -11,6 +11,11 @@ media:
     label: Installations Media
     input: media/installations
     output: media/installations
+  - name: documents
+    label: Documents (PDF, CV, etc.)
+    input: media
+    output: media
+    categories: [document]
 
 content:
   # Portfolio Projects - Collection of separate files
@@ -120,6 +125,14 @@ content:
         type: text
         required: true
         description: About section text
+      - name: cvUrl
+        label: CV file (PDF)
+        type: file
+        options:
+          media: documents
+          path: media
+          categories: [document]
+          extensions: [pdf]
 
   # Contacts
   - name: contacts
