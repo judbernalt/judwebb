@@ -126,7 +126,7 @@ content:
         required: true
         description: About section text
       - name: cvUrl
-        label: CV file (PDF)
+        label: CV (PDF) [MAX 8 MB]
         type: file
         options:
           media: documents

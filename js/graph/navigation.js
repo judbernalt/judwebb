@@ -26,7 +26,17 @@ export async function loadCategories() {
     const data = await res.json();
     const set = new Set();
     data.forEach((p) => p.category && set.add(p.category));
-    cache.categories = Array.from(set);
+    const categories = Array.from(set);
+    // Enforce a stable, desired order of categories in the UI
+    const desiredOrder = ["visuals", "algolab", "installations"];
+    cache.categories = categories.sort((a, b) => {
+      const ia = desiredOrder.indexOf(a);
+      const ib = desiredOrder.indexOf(b);
+      if (ia === -1 && ib === -1) return a.localeCompare(b);
+      if (ia === -1) return 1;
+      if (ib === -1) return -1;
+      return ia - ib;
+    });
     return cache.categories;
   } catch (e) {
     return ["visuals", "algolab", "installations"];
