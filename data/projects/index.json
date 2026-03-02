@@ -389,6 +389,12 @@
         "type": "image",
         "src": "media/installations/the nest/the_nest03.webp",
         "alt": "The Nest"
+      },
+      {
+        "type": "video",
+        "src": "media/visuals/the_nest04.gif",
+        "alt": "The Nest",
+        "externalLink": "https://www.youtube.com/embed/HkRfy_kFVuM?si=eiQu5Rt2SdvV-csI"
       }
     ]
   },
