@@ -52,6 +52,7 @@ export function canResume(index) {
   if (state.mode === "focus") return kind === "child";
   if (state.mode === "category") return kind === "grandchild";
   if (state.mode === "project") return kind === "media";
+  if (state.mode === "content") return kind === "textContent";
   return false;
 }
 

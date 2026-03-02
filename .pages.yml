@@ -1,4 +1,11 @@
 media:
+  # Root media config used by project image picker ("Select from media")
+  - name: projectMedia
+    label: Project Media
+    input: media
+    output: media
+    categories: [image, video]
+
   - name: visuals
     label: Visuals Media
     input: media/visuals
@@ -13,8 +20,8 @@ media:
     output: media/installations
   - name: documents
     label: Documents (PDF, CV, etc.)
-    input: media
-    output: media
+    input: media/documents
+    output: media/documents
     categories: [document]
 
 content:
@@ -95,6 +102,8 @@ content:
             type: image
             required: true
             description: Upload the image or video
+            options:
+              media: projectMedia
 
           - name: alt
             label: Alt Text / Caption
@@ -130,7 +139,6 @@ content:
         type: file
         options:
           media: documents
-          path: media
           categories: [document]
           extensions: [pdf]
 
