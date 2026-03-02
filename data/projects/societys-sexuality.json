@@ -17,9 +17,12 @@
       "type": "image",
       "src": "media/installations/societys_sexuality/societys_sexuality02.webp",
       "alt": "Society's Sexuality"
+    },
+    {
+      "type": "video",
+      "src": "media/installations/societys_sexuality/societys_sexuality03.gif",
+      "alt": "Society's Sexuality",
+      "externalLink": "https://www.youtube.com/embed/gOUszefNp2U?si=1_j4AdzVmTQT_Nq9"
     }
-  ],
-  "tags": [
-    ""
   ]
 }
