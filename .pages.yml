@@ -1,11 +1,4 @@
 media:
-  # Root media config used by project image picker ("Select from media")
-  - name: projectMedia
-    label: Project Media
-    input: media
-    output: media
-    categories: [image, video]
-
   - name: visuals
     label: Visuals Media
     input: media/visuals
@@ -102,8 +95,6 @@ content:
             type: image
             required: true
             description: Upload the image or video
-            options:
-              media: projectMedia
 
           - name: alt
             label: Alt Text / Caption
@@ -117,10 +108,12 @@ content:
             description: "YouTube embed URL for video type (e.g. https://www.youtube.com/embed/VIDEO_ID)"
 
       - name: tags
+        # Deprecated - kept for backward compatibility, hidden from UI
         label: Tags
         type: string
         list: true
-        description: Project tags (e.g. "#Touchdesigner, #VJ")
+        hidden: true
+        description: Deprecated, no longer used
 
   # About Page
   - name: about
