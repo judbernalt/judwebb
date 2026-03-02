@@ -17,9 +17,12 @@
       "type": "image",
       "src": "media/installations/no_signal/no_signal02.webp",
       "alt": "No Signal"
+    },
+    {
+      "type": "video",
+      "src": "media/visuals/no_signal03.gif",
+      "alt": "No Signal",
+      "externalLink": "https://www.youtube.com/embed/lcQDUXk9zxg?si=Qgg_n8k_lojAuGYP"
     }
-  ],
-  "tags": [
-    ""
   ]
 }
