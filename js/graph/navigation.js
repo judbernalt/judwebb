@@ -226,6 +226,7 @@ export function createDescriptionNode(project, projectIndex) {
   return {
     kind: "description",
     description: descriptionText,
+    font: project.font || "JetBrains Mono",
     projectIndex,
     anchorPoint: area.ANCHOR_POINT,
     x: anchorX,
@@ -238,7 +239,7 @@ export function createDescriptionNode(project, projectIndex) {
   };
 }
 
-export function createAboutDescriptionNode(text, mainIndex) {
+export function createAboutDescriptionNode(aboutData, mainIndex) {
   const canvasWidth = state.ctx.canvas.width;
   const canvasHeight = state.ctx.canvas.height;
   
@@ -248,7 +249,8 @@ export function createAboutDescriptionNode(text, mainIndex) {
   
   return {
     kind: "aboutDescription",
-    description: text,
+    description: aboutData.text,
+    font: aboutData.font || "JetBrains Mono",
     mainIndex: mainIndex,
     x: anchorX,
     y: anchorY,
@@ -453,7 +455,7 @@ export async function enterAboutMode(mainIndex) {
   
   try {
     const aboutData = await loadAbout();
-    const aboutNode = createAboutDescriptionNode(aboutData.text, mainIndex);
+    const aboutNode = createAboutDescriptionNode(aboutData, mainIndex);
     state.nodes.push(aboutNode);
 
     // Optional dynamic CV node, driven by CMS data (about.json)

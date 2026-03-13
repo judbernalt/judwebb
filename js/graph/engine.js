@@ -814,7 +814,7 @@ function drawDescriptionNode(n, i, nodeAlpha, dpr) {
   state.ctx.save();
   state.ctx.globalAlpha = nodeAlpha;
   state.ctx.fillStyle = CFG.COLOR;
-  state.ctx.font = `${CFG.DESCRIPTION.FONT_SIZE * dpr}px StraightNarrow, sans-serif`;
+  state.ctx.font = `${CFG.DESCRIPTION.FONT_SIZE * dpr}px ${n.font}, ${n.font === 'JetBrains Mono' ? 'monospace' : 'sans-serif'}`;
   
   if (n.description) {
     // Calculate responsive max width based on canvas size
@@ -852,7 +852,7 @@ function drawAboutDescriptionNode(n, i, nodeAlpha, dpr) {
   state.ctx.save();
   state.ctx.globalAlpha = nodeAlpha;
   state.ctx.fillStyle = CFG.COLOR;
-  state.ctx.font = `${CFG.ABOUT.FONT_SIZE * dpr}px StraightNarrow, sans-serif`;
+  state.ctx.font = `${CFG.ABOUT.FONT_SIZE * dpr}px ${n.font}, ${n.font === 'JetBrains Mono' ? 'monospace' : 'sans-serif'}`;
   
   if (n.description) {
     // Calculate responsive max width based on canvas size - use ABOUT config
