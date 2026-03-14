@@ -134,7 +134,7 @@ function draw() {
 
 export function clearHoverBox() { hoverBox = null; hoverBoxFromCanvas = false; }
 
-// Touch navigation for mobile
+// Touch navigation and camera panning for mobile
 let lastTouch = null;
 let panOffset = { x: 0, y: 0 };
 
@@ -143,6 +143,11 @@ function isMobileView() {
 }
 
 if (isMobileView()) {
+  // Hide cursor canvas
+  if (ctx && ctx.canvas) ctx.canvas.style.display = "none";
+  // Hide footer coordinates
+  if (footerEl) footerEl.style.display = "none";
+
   window.addEventListener("touchstart", (e) => {
     if (e.touches.length === 1) {
       lastTouch = { x: e.touches[0].clientX, y: e.touches[0].clientY };
@@ -155,8 +160,8 @@ if (isMobileView()) {
       panOffset.x += dx;
       panOffset.y += dy;
       lastTouch = { x: e.touches[0].clientX, y: e.touches[0].clientY };
-      // Apply panOffset to graph rendering (needs integration with graph.js)
-      // Example: state.cameraOffsetX += dx; state.cameraOffsetY += dy;
+      // Camera panning: update global state
+      window.graphPanOffset = panOffset;
     }
   });
   window.addEventListener("touchend", () => {

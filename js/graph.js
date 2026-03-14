@@ -74,6 +74,12 @@ function tick(ts) {
   state.cameraTargetOffsetX = -width * CFG.CAMERA.SHIFT_PER_DEPTH * state.uiDepth;
   state.cameraOffsetX += (state.cameraTargetOffsetX - state.cameraOffsetX) * 0.2;
   
+  // Camera panning for mobile
+  if (window.innerWidth <= 480 && window.graphPanOffset) {
+    state.cameraOffsetX += window.graphPanOffset.x;
+    state.cameraOffsetY = window.graphPanOffset.y || 0;
+  }
+
   // Update physics and render
   step(dt);
   draw();
