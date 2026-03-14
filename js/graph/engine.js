@@ -846,9 +846,8 @@ function applyTransitionShrink(fontSize, n, i, isMain) {
 function drawDescriptionNode(n, i, nodeAlpha, dpr) {
   state.ctx.save();
   state.ctx.globalAlpha = nodeAlpha;
-  state.ctx.fillStyle = CFG.COLOR;
   state.ctx.font = `${CFG.DESCRIPTION.FONT_SIZE * dpr}px ${n.font}, ${n.font === 'JetBrains Mono' ? 'monospace' : 'sans-serif'}`;
-  
+
   if (n.description) {
     // Calculate responsive max width based on canvas size
     const maxWidth = state.ctx.canvas.width * CFG.DESCRIPTION.TEXT_MAX_WIDTH_RATIO;
@@ -859,19 +858,26 @@ function drawDescriptionNode(n, i, nodeAlpha, dpr) {
     // Use clean text for box size calculation
     const cleanLines = wrapText(state.ctx, cleanText, maxWidth);
     const boxSize = calculateTextBoxSize(state.ctx, cleanLines, CFG.DESCRIPTION.LINE_HEIGHT, CFG.DESCRIPTION.PADDING);
-    
+
     const isFirstFrame = !n._boxWidth;
     if (!n._boxWidth || n._boxWidth !== boxSize.width) {
       n._boxWidth = boxSize.width;
       n._boxHeight = boxSize.height;
     }
-    
+
     if (isFirstFrame) {
       state.ctx.restore();
       return;
     }
-    
+
     const { dx, dy } = getDescriptionBoxPosition(n);
+    // Sfondo nero dietro la descrizione
+    state.ctx.save();
+    state.ctx.globalAlpha = 0.85 * nodeAlpha; // leggermente trasparente
+    state.ctx.fillStyle = '#000';
+    state.ctx.fillRect(dx, dy, boxSize.width, boxSize.height);
+    state.ctx.restore();
+
     state.ctx.textBaseline = "top";
     const startY = dy + CFG.DESCRIPTION.PADDING;
     tokenizedLines.forEach((tokens, idx) => {
@@ -926,6 +932,13 @@ function drawAboutDescriptionNode(n, i, nodeAlpha, dpr) {
     const dx = n.x - n._boxWidth / 2;
     const dy = n.y - n._boxHeight / 2;
     
+    // Sfondo nero dietro la descrizione about
+    state.ctx.save();
+    state.ctx.globalAlpha = 0.85 * nodeAlpha;
+    state.ctx.fillStyle = '#000';
+    state.ctx.fillRect(dx, dy, n._boxWidth, n._boxHeight);
+    state.ctx.restore();
+
     state.ctx.textBaseline = "top";
     let currentY = dy + CFG.ABOUT.PADDING;
     tokenizedLines.forEach((tokens, idx) => {
