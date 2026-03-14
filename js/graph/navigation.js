@@ -203,26 +203,26 @@ export function createMediaNode(mediaItem, projectIndex, mediaIndex, totalMediaC
 export function createDescriptionNode(project, projectIndex) {
   const canvasWidth = state.ctx.canvas.width;
   const canvasHeight = state.ctx.canvas.height;
-  
   // Get spawn area based on device type
   const area = getDescriptionSpawnArea();
-  
   // X is fixed, Y is random within range
   const fixedX = area.X_FIXED;
   const randomY = area.Y_MIN + Math.random() * (area.Y_MAX - area.Y_MIN);
-  
   let anchorX = fixedX * canvasWidth;
   let anchorY = randomY * canvasHeight;
-  
-  const margin = 50;
-  anchorX = Math.max(margin, Math.min(canvasWidth - margin, anchorX));
-  anchorY = Math.max(margin, Math.min(canvasHeight - margin, anchorY));
-  
   // Convert description array to string with paragraph breaks
   const descriptionText = Array.isArray(project.description) 
     ? project.description.join('\n\n') 
     : project.description;
-  
+  // Estimate box height based on text length and config
+  const fontSize = CFG.DESCRIPTION.FONT_SIZE;
+  const lineHeight = CFG.DESCRIPTION.LINE_HEIGHT;
+  const maxWidth = CFG.DESCRIPTION.TEXT_MAX_WIDTH_RATIO * canvasWidth;
+  // Split text into lines and estimate height
+  const lines = descriptionText.split('\n').length;
+  const boxHeight = lines * lineHeight + CFG.DESCRIPTION.PADDING * 2;
+  // Clamp anchorY so box never exceeds canvas
+  anchorY = Math.max(boxHeight / 2, Math.min(canvasHeight - boxHeight / 2, anchorY));
   return {
     kind: "description",
     description: descriptionText,

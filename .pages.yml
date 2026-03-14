@@ -72,16 +72,6 @@ content:
         description: "Project description paragraphs (each item is a paragraph). Use ==text== to highlight words with green background."
 
       - name: font
-        label: Font
-        type: select
-        options:
-          values:
-            - value: "StraightNarrow"
-              label: Straight Narrow
-            - value: "JetBrains Mono"
-              label: JetBrains Mono
-        default: "JetBrains Mono"
-        description: Choose the font for the description text.
 
       - name: media
         label: Media
@@ -140,16 +130,6 @@ content:
         required: true
         description: About section text
       - name: font
-        label: Font
-        type: select
-        options:
-          values:
-            - value: "StraightNarrow"
-              label: Straight Narrow
-            - value: "JetBrains Mono"
-              label: JetBrains Mono
-        default: "JetBrains Mono"
-        description: Choose the font for the about text.
       - name: cvUrl
         label: CV (PDF) [MAX 8 MB]
         type: file

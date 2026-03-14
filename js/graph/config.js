@@ -88,20 +88,18 @@ export const MEDIA = {
 
 // Description text formatting (project descriptions)
 export const DESCRIPTION = {
-  TEXT_MAX_WIDTH_RATIO: 0.45, // max width as ratio of canvas width (responsive)
+  TEXT_MAX_WIDTH_RATIO: getResponsiveDescriptionWidthRatio(), // responsive max width
   FONT_SIZE: getResponsiveFontSize(), // font size for description text (responsive)
-  LINE_HEIGHT: getResponsiveLineHeight(), // line height for description text (responsive)
+  LINE_HEIGHT: getResponsiveDescriptionLineHeight(), // responsive line height
   PADDING: 18, // space between text and corner brackets
-  
-  // Spawn area DESKTOP (description in top-right corner)
+  // Responsive vertical spawn area
+  Y_SPAWN: getResponsiveDescriptionYSpawn(), // responsive vertical spawn area
   DESKTOP: {
     X_FIXED: 0.98, // fixed horizontal position (far right)
     Y_MIN: 0.05, // from top
     Y_MAX: 0.11, // 
     ANCHOR_POINT: "top-right"
   },
-  
-  // Spawn area MOBILE (description on bottom)
   MOBILE: {
     X_FIXED: 0.95, // slightly scaled from desktop
     Y_MIN: 0.55,
@@ -109,6 +107,14 @@ export const DESCRIPTION = {
     ANCHOR_POINT: "top-right"
   }
 };
+
+// Responsive vertical spawn area for description box
+function getResponsiveDescriptionYSpawn() {
+  const h = window.innerHeight || 1080;
+  if (h <= 480) return { Y_MIN: 0.08, Y_MAX: 0.92 }; // mobile: more vertical space
+  if (h < 1200) return { Y_MIN: 0.10, Y_MAX: 0.90 }; // tablet: generous
+  return { Y_MIN: 0.05, Y_MAX: 0.11 }; // desktop: default
+}
 
 // Text content formatting (for ABOUT/CONTACTS text)
 export const TEXT = {
@@ -120,9 +126,9 @@ export const TEXT = {
 
 // About section specific formatting
 export const ABOUT = {
-  TEXT_MAX_WIDTH_RATIO: 0.52, // wider than project descriptions (0.45)
+  TEXT_MAX_WIDTH_RATIO: getResponsiveAboutWidthRatio(), // responsive max width
   FONT_SIZE: getResponsiveFontSize(),
-  LINE_HEIGHT: getResponsiveLineHeight(),
+  LINE_HEIGHT: getResponsiveDescriptionLineHeight(), // responsive line height (same as DESCRIPTION)
   PADDING: 18,
   // Position offset from center (as ratio of canvas height)
   Y_OFFSET: 0.12 // positive = lower on screen
@@ -210,6 +216,38 @@ export function getResponsiveChildLabelRightPadding(labelWidth) {
   if (w <= 480) return Math.max(300, labelWidth * 0.10);
   if (w < 1200) return Math.max(10, labelWidth * 0.13);
   return Math.max(14, labelWidth * 0.16);
+}
+
+// Responsive max width ratio for description box
+function getResponsiveDescriptionWidthRatio() {
+  const w = window.innerWidth || 1920;
+  if (w <= 480) return 0.85; // mobile: much wider
+  if (w < 1200) return 0.65; // tablet: wider
+  return 0.45; // desktop: default
+}
+
+// Responsive max width ratio for about box
+function getResponsiveAboutWidthRatio() {
+  const w = window.innerWidth || 1920;
+  if (w <= 480) return 0.95; // mobile: almost full width
+  if (w < 1200) return 0.75; // tablet: wider
+  return 0.52; // desktop: default
+}
+
+// Responsive line height for description box
+function getResponsiveDescriptionLineHeight() {
+  const w = window.innerWidth || 1920;
+  if (w <= 480) return 32; // mobile: tighter
+  if (w < 1200) return 26; // tablet: slightly tighter
+  return 32; // desktop: default
+}
+
+// Responsive line height for about box
+function getResponsiveAboutLineHeight() {
+  const w = window.innerWidth || 1920;
+  if (w <= 480) return 24; // mobile: tighter
+  if (w < 1200) return 28; // tablet: slightly tighter
+  return 40; // desktop: default
 }
 
 
