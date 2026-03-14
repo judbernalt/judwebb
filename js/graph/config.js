@@ -42,7 +42,7 @@ export const GRANDCHILD = {
 
 // Media nodes (project images/videos)
 export const MEDIA = {
-  SIZE: 1000, // base size of media thumbnail in pixels
+  SIZE: getResponsiveMediaSize(), // base size of media thumbnail in pixels
   OSCILLATION_SPEED: 0.8, // speed factor for media movement
   BORDER_WIDTH: 2, // border thickness for media thumbnails in pixels
   BRACKET_PADDING: 8, // extra padding for hover brackets around media (in CSS pixels)
@@ -81,8 +81,8 @@ export const MEDIA = {
 // Description text formatting (project descriptions)
 export const DESCRIPTION = {
   TEXT_MAX_WIDTH_RATIO: 0.45, // max width as ratio of canvas width (responsive)
-  FONT_SIZE: 16, // font size for description text (JetBrains Mono larger)
-  LINE_HEIGHT: 32, // line height for description text (JetBrains Mono tighter)
+  FONT_SIZE: getResponsiveFontSize(), // font size for description text (responsive)
+  LINE_HEIGHT: getResponsiveLineHeight(), // line height for description text (responsive)
   PADDING: 18, // space between text and corner brackets
   
   // Spawn area DESKTOP (description in top-right corner)
@@ -113,8 +113,8 @@ export const TEXT = {
 // About section specific formatting
 export const ABOUT = {
   TEXT_MAX_WIDTH_RATIO: 0.52, // wider than project descriptions (0.45)
-  FONT_SIZE: 16,
-  LINE_HEIGHT: 32,
+  FONT_SIZE: getResponsiveFontSize(),
+  LINE_HEIGHT: getResponsiveLineHeight(),
   PADDING: 18,
   // Position offset from center (as ratio of canvas height)
   Y_OFFSET: 0.12 // positive = lower on screen
@@ -157,6 +157,28 @@ export const CURSOR = {
 export const SLUG = {
   HOVER_PADDING: 16 // extra pixels around slug for easier hover detection
 };
+
+// Responsive scaling helpers
+function getResponsiveFontSize() {
+  const w = window.innerWidth || 1920;
+  if (w > 1920) return 15 + Math.min(6, (w - 1920) / 320); // max 21px
+  if (w < 1200) return 14;
+  return 15;
+}
+
+function getResponsiveLineHeight() {
+  const w = window.innerWidth || 1920;
+  if (w > 1920) return 32 + Math.min(8, (w - 1920) / 320); // max 40px
+  if (w < 1200) return 28;
+  return 32;
+}
+
+function getResponsiveMediaSize() {
+  const w = window.innerWidth || 1920;
+  if (w > 1920) return 800;
+  if (w < 1200) return 600;
+  return 1000;
+}
 
 
 
