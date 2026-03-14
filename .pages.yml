@@ -70,9 +70,6 @@ content:
         list: true
         required: true
         description: "Project description paragraphs (each item is a paragraph). Use ==text== to highlight words with green background."
-
-      - name: font
-
       - name: media
         label: Media
         type: object
