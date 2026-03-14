@@ -93,11 +93,8 @@ content:
             label: File
             type: image
             required: true
-            options:
-                media:
-                  - algolab
-                  - visuals
-                  - installations
+              options:
+                media: media
 
           - name: alt
             label: Alt Text / Caption
