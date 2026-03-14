@@ -21,6 +21,10 @@ export function initCursor(canvas) {
   resize();
   window.addEventListener("resize", resize);
 
+  // Detect mobile device
+  const isMobile = window.innerWidth <= 480 || /Mobi|Android/i.test(navigator.userAgent);
+  if (isMobile) return; // Non attivare il cursor su mobile
+
   window.addEventListener("pointermove", (e) => {
     const rect = canvas.getBoundingClientRect();
     mouse.x = (e.clientX - rect.left) * (canvas.width / rect.width);
