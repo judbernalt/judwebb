@@ -185,7 +185,8 @@ function getResponsiveRect() {
   const w = window.innerWidth || 1920;
   if (w > 1920) return { w: 13, h: 23 };
   if (w < 1200) return { w: 20, h: 36 };
-  return { w: 18, h: 32 };
+  return { w: 21, h: 38
+   };
 }
 
 

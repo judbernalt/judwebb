@@ -8,7 +8,7 @@ export function startGraph(canvas) {
   
   state.ctx = canvas.getContext("2d");
   resizeCanvasToDisplaySize(canvas);
-  window.addEventListener("resize", () => resizeCanvasToDisplaySize(canvas));
+  window.addEventListener("resize", () => handleResponsiveResize(canvas));
   
   // Initialize 3 main nodes
   const { width, height } = canvas;
@@ -34,11 +34,10 @@ export function startGraph(canvas) {
   state.mainAnchors = computeMainAnchors(width, height);
   for (let i = 0; i < 3; i++) {
     const a = state.mainAnchors[i];
-    const jitter = () => (Math.random() - 0.5) * CFG.MAIN.WANDER_RADIUS * 0.3;
-    state.nodes[i].x = clamp(a.x + jitter(), a.x - CFG.MAIN.WANDER_RADIUS, a.x + CFG.MAIN.WANDER_RADIUS);
-    state.nodes[i].y = clamp(a.y + jitter(), a.y - CFG.MAIN.WANDER_RADIUS, a.y + CFG.MAIN.WANDER_RADIUS);
-    state.nodes[i].targetX = state.nodes[i].x;
-    state.nodes[i].targetY = state.nodes[i].y;
+    state.nodes[i].x = a.x;
+    state.nodes[i].y = a.y;
+    state.nodes[i].targetX = a.x;
+    state.nodes[i].targetY = a.y;
   }
   
   // Setup interaction handlers
@@ -87,4 +86,21 @@ function resizeCanvasToDisplaySize(canvas) {
   const { clientWidth, clientHeight } = canvas;
   canvas.width = Math.floor(clientWidth * dpr);
   canvas.height = Math.floor(clientHeight * dpr);
+}
+
+function handleResponsiveResize(canvas) {
+  resizeCanvasToDisplaySize(canvas);
+  // Recompute anchors and reposition main nodes
+  const { width, height } = canvas;
+  state.mainAnchors = computeMainAnchors(width, height);
+  for (let i = 0; i < 3; i++) {
+    const a = state.mainAnchors[i];
+    state.nodes[i].x = a.x;
+    state.nodes[i].y = a.y;
+    state.nodes[i].targetX = a.x;
+    state.nodes[i].targetY = a.y;
+  }
+  // Optionally, reset camera offsets
+  state.cameraOffsetX = 0;
+  state.cameraTargetOffsetX = 0;
 }

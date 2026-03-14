@@ -134,3 +134,33 @@ function draw() {
 
 export function clearHoverBox() { hoverBox = null; hoverBoxFromCanvas = false; }
 
+// Touch navigation for mobile
+let lastTouch = null;
+let panOffset = { x: 0, y: 0 };
+
+function isMobileView() {
+  return window.innerWidth <= 480;
+}
+
+if (isMobileView()) {
+  window.addEventListener("touchstart", (e) => {
+    if (e.touches.length === 1) {
+      lastTouch = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+    }
+  });
+  window.addEventListener("touchmove", (e) => {
+    if (e.touches.length === 1 && lastTouch) {
+      const dx = e.touches[0].clientX - lastTouch.x;
+      const dy = e.touches[0].clientY - lastTouch.y;
+      panOffset.x += dx;
+      panOffset.y += dy;
+      lastTouch = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+      // Apply panOffset to graph rendering (needs integration with graph.js)
+      // Example: state.cameraOffsetX += dx; state.cameraOffsetY += dy;
+    }
+  });
+  window.addEventListener("touchend", () => {
+    lastTouch = null;
+  });
+}
+
