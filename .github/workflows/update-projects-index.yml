@@ -29,7 +29,6 @@ jobs:
           projects_dir = Path('data/projects')
           projects = []
 
-          # Leggi tutti i file JSON nella cartella projects (escluso _index.json)
           for filepath in sorted(projects_dir.glob('*.json')):
               if filepath.name == 'index.json':
                   continue
@@ -38,19 +37,19 @@ jobs:
                   with open(filepath, 'r', encoding='utf-8') as f:
                       project = json.load(f)
                       projects.append(project)
-                      print(f"Letto: {filepath.name}")
+                      print(f"Read: {filepath.name}")
               except Exception as e:
-                  print(f"Errore leggendo {filepath.name}: {e}")
+                  print(f"Error reading {filepath.name}: {e}")
 
-          # Ordina per anno (decrescente) e poi per titolo
+          # Sort by year (descending) and then by title
           projects.sort(key=lambda p: (-p.get('year', 0), p.get('title', '')))
 
-          # Scrivi l'indice
+          # Write the index file
           index_path = projects_dir / 'index.json'
           with open(index_path, 'w', encoding='utf-8') as f:
               json.dump(projects, f, indent=2, ensure_ascii=False)
 
-          print(f"\nIndice generato con {len(projects)} progetti")
+          print(f"\nIndex generated with {len(projects)} projects")
           EOF
 
       - name: Commit and push if changed

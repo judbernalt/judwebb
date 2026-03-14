@@ -94,6 +94,11 @@ content:
             type: image
             required: true
             description: Upload the image or video
+              options:
+                media:
+                  - visuals
+                  - algolab
+                  - installations
 
           - name: alt
             label: Alt Text / Caption
