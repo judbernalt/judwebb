@@ -106,14 +106,6 @@ content:
             type: string
             description: "YouTube embed URL for video type (e.g. https://www.youtube.com/embed/VIDEO_ID)"
 
-      - name: tags
-        # Deprecated - kept for backward compatibility, hidden from UI
-        label: Tags
-        type: string
-        list: true
-        hidden: true
-        description: Deprecated, no longer used
-
   # About Page
   - name: about
     label: About
