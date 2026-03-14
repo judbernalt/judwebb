@@ -14,8 +14,16 @@ export const MAIN = {
   WANDER_RADIUS: 400, // how far mains wander from anchor
   RETURN_STRENGTH: 0.008, // spring force back to anchor
   SHRINK_SCALE: 0.7, // scale for non-focused mains in focus mode
-  DIM_ALPHA: 0.3 // alpha for non-focused mains when focused
+  DIM_ALPHA: 0.3, // alpha for non-focused mains when focused
+  X_OFFSET: getResponsiveMainXOffset() // pixels added to main nodes X position (responsive)
 };
+
+function getResponsiveMainXOffset() {
+  const w = window.innerWidth || 1920;
+  if (w <= 480) return -50; // mobile: shift left
+  if (w < 1200) return -50; // tablet: slight shift
+  return 0; // desktop: no offset
+}
 
 // Child nodes (categories/contacts)
 export const CHILD = {
@@ -187,6 +195,21 @@ function getResponsiveRect() {
   if (w < 1200) return { w: 20, h: 36 };
   return { w: 21, h: 38
    };
+}
+
+// Responsive label right padding for bounding (proportional to label width)
+export function getResponsiveGrandchildLabelRightPadding(labelWidth) {
+  const w = window.innerWidth || 1920;
+  if (w <= 480) return Math.max(600, labelWidth * 0.12);
+  if (w < 1200) return Math.max(12, labelWidth * 0.15);
+  return Math.max(16, labelWidth * 0.18);
+}
+
+export function getResponsiveChildLabelRightPadding(labelWidth) {
+  const w = window.innerWidth || 1920;
+  if (w <= 480) return Math.max(300, labelWidth * 0.10);
+  if (w < 1200) return Math.max(10, labelWidth * 0.13);
+  return Math.max(14, labelWidth * 0.16);
 }
 
 

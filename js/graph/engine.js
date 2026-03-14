@@ -138,6 +138,39 @@ export function step(dt) {
       if (n.y > maxY) { n.y = maxY; n.vy = -Math.abs(n.vy) * 0.5; }
     }
     
+    // Hard boundary bouncing for grandchild nodes (stay inside screen)
+    if (n.kind === "grandchild" && (state.mode === "category" || state.mode === "project")) {
+      const margin = 50; // margin from edges
+      const fontSize = getFontSizeForNode(n, idx, false);
+      const dpr = window.devicePixelRatio || 1;
+      const labelWidth = state.ctx ? state.ctx.measureText(n.label).width : 0;
+      const extraRight = CFG.getResponsiveGrandchildLabelRightPadding(labelWidth);
+      const minX = margin;
+      const maxX = width - margin - labelWidth - extraRight;
+      const minY = margin;
+      const maxY = height - margin;
+      // Bounce off boundaries
+      if (n.x < minX) { n.x = minX; n.vx = Math.abs(n.vx) * 0.5; }
+      if (n.x > maxX) { n.x = maxX; n.vx = -Math.abs(n.vx) * 0.5; }
+      if (n.y < minY) { n.y = minY; n.vy = Math.abs(n.vy) * 0.5; }
+      if (n.y > maxY) { n.y = maxY; n.vy = -Math.abs(n.vy) * 0.5; }
+    }
+    if (n.kind === "child" && (state.mode === "focus" || state.mode === "category" || state.mode === "project")) {
+      const margin = 50;
+      const fontSize = getFontSizeForNode(n, idx, false);
+      const dpr = window.devicePixelRatio || 1;
+      const labelWidth = state.ctx ? state.ctx.measureText(n.label).width : 0;
+      const extraRight = CFG.getResponsiveChildLabelRightPadding(labelWidth);
+      const minX = margin;
+      const maxX = width - margin - labelWidth - extraRight;
+      const minY = margin;
+      const maxY = height - margin;
+      if (n.x < minX) { n.x = minX; n.vx = Math.abs(n.vx) * 0.5; }
+      if (n.x > maxX) { n.x = maxX; n.vx = -Math.abs(n.vx) * 0.5; }
+      if (n.y < minY) { n.y = minY; n.vy = Math.abs(n.vy) * 0.5; }
+      if (n.y > maxY) { n.y = maxY; n.vy = -Math.abs(n.vy) * 0.5; }
+    }
+    
     // Soft boundary steering for other nodes
     const margin = 30;
     if (n.x < bounds.left + margin) n.vx += 0.01;
@@ -1418,7 +1451,7 @@ export function clampToBounds(x, y, bounds) {
 
 export function computeMainAnchors(width, height) {
   const b = getBounds(width, height);
-  const cx = (b.left + b.right) / 2;
+  const cx = (b.left + b.right) / 2 + CFG.MAIN.X_OFFSET;
   const cy = (b.top + b.bottom) / 2;
   const r = Math.min(b.right - b.left, b.bottom - b.top) * 0.35;
   const angles = [-Math.PI / 2, (3 * Math.PI) / 4, -Math.PI / 6];
