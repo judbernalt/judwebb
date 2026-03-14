@@ -95,8 +95,8 @@ content:
             required: true
             options:
                 media:
-                  - visuals
                   - algolab
+                  - visuals
                   - installations
 
           - name: alt
