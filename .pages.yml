@@ -93,7 +93,6 @@ content:
             label: File
             type: image
             required: true
-            description: Upload the image or video
               options:
                 media:
                   - visuals
