@@ -19,6 +19,11 @@
       "name": "youtube",
       "slug": "youtube",
       "url": "https://www.youtube.com/@judbernalt"
+    },
+    {
+      "name": "GITHUB",
+      "slug": "github",
+      "url": "https://github.com/judbernalt"
     }
   ]
 }
