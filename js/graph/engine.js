@@ -1106,11 +1106,17 @@ function sortNodesByZIndex() {
     const nodeA = state.nodes[a];
     const nodeB = state.nodes[b];
     // aboutDescription should be drawn last (highest z-index)
-    const zIndexA = nodeA.kind === "aboutDescription" ? 10000 : 
-                    nodeA.kind === "media" ? (nodeA._zIndex || 0) : -1000 - a;
-    const zIndexB = nodeB.kind === "aboutDescription" ? 10000 : 
-                    nodeB.kind === "media" ? (nodeB._zIndex || 0) : -1000 - b;
-    return zIndexA - zIndexB;
+    const zA = nodeA.kind === "aboutDescription" ? 10000
+      : nodeA.kind === "media" ? (nodeA._zIndex || 0)
+      : nodeA.kind === "grandchild" ? 9000
+      : nodeA.kind === "child" ? 8000
+      : -1000 - a;
+    const zB = nodeB.kind === "aboutDescription" ? 10000
+      : nodeB.kind === "media" ? (nodeB._zIndex || 0)
+      : nodeB.kind === "grandchild" ? 9000
+      : nodeB.kind === "child" ? 8000
+      : -1000 - b;
+    return zA - zB;
   });
   return sortedIndices;
 }
