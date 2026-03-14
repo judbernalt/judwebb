@@ -1,4 +1,8 @@
 media:
+  - name: media
+    label: Media
+    input: media
+    output: media
   - name: visuals
     label: Visuals Media
     input: media/visuals
@@ -93,8 +97,6 @@ content:
             label: File
             type: image
             required: true
-              options:
-                media: media
 
           - name: alt
             label: Alt Text / Caption
