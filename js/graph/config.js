@@ -81,8 +81,8 @@ export const MEDIA = {
 // Description text formatting (project descriptions)
 export const DESCRIPTION = {
   TEXT_MAX_WIDTH_RATIO: 0.45, // max width as ratio of canvas width (responsive)
-  FONT_SIZE: 14, // font size for description text
-  LINE_HEIGHT: 40, // line height for description text
+  FONT_SIZE: 16, // font size for description text (JetBrains Mono larger)
+  LINE_HEIGHT: 32, // line height for description text (JetBrains Mono tighter)
   PADDING: 18, // space between text and corner brackets
   
   // Spawn area DESKTOP (description in top-right corner)
@@ -113,8 +113,8 @@ export const TEXT = {
 // About section specific formatting
 export const ABOUT = {
   TEXT_MAX_WIDTH_RATIO: 0.52, // wider than project descriptions (0.45)
-  FONT_SIZE: 14,
-  LINE_HEIGHT: 40,
+  FONT_SIZE: 16,
+  LINE_HEIGHT: 32,
   PADDING: 18,
   // Position offset from center (as ratio of canvas height)
   Y_OFFSET: 0.12 // positive = lower on screen
