@@ -5,7 +5,7 @@ export const MAIN_BOUNDS = { xPad: 0.1, yPad: 0.1 };
 
 // Visual elements
 export const RECT = getResponsiveRect(); // small vertical rectangle
-export const LINE_WIDTH = 2; // connection lines
+export const LINE_WIDTH = getResponsiveLineWidth(); // connection lines
 
 // Main nodes behavior
 export const MAIN = {
@@ -196,9 +196,15 @@ function getResponsiveMediaSize() {
 function getResponsiveRect() {
   const w = window.innerWidth || 1920;
   if (w > 1920) return { w: 12, h: 20 };
-  if (w < 1200) return { w: 20, h: 36 };
-  return { w: 21, h: 38
-   };
+  return { w: 21, h: 38 };
+}
+
+// Responsive line width for connection lines
+function getResponsiveLineWidth() {
+  const w = window.innerWidth || 1920;
+  if (w > 1920) return 1.3;
+  if (w <= 480) return 2.2;
+  return 2; 
 }
 
 // Responsive label right padding for bounding (proportional to label width)
@@ -220,7 +226,6 @@ export function getResponsiveChildLabelRightPadding(labelWidth) {
 function getResponsiveDescriptionWidthRatio() {
   const w = window.innerWidth || 1920;
   if (w <= 480) return 0.85; // mobile: much wider
-  if (w < 1200) return 0.65; // tablet: wider
   return 0.45; // desktop: default
 }
 
@@ -237,7 +242,7 @@ function getResponsiveTextLineHeight() {
   const w = window.innerWidth || 1920;
   if (w > 1920) return 26;
   if (w <= 480) return 32; // mobile: tighter
-  if (w < 1200) return 28; // tablet: slightly tighter
+  if (w < 1200) return 35; // tablet: slightly tighter
   return 40; // desktop: default
 }
 
