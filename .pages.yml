@@ -93,7 +93,7 @@ content:
             label: File
             type: image
             required: true
-              options:
+            options:
                 media:
                   - visuals
                   - algolab
