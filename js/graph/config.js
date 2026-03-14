@@ -20,7 +20,7 @@ export const MAIN = {
 
 function getResponsiveMainXOffset() {
   const w = window.innerWidth || 1920;
-  if (w <= 480) return -50; // mobile: shift left
+  if (w <= 480) return -100; // mobile: shift left
   if (w < 1200) return -50; // tablet: slight shift
   return 0; // desktop: no offset
 }
@@ -110,7 +110,7 @@ export const DESCRIPTION = {
 // Responsive vertical spawn area for description box
 function getResponsiveDescriptionYSpawn() {
   const h = window.innerHeight || 1080;
-  if (h <= 480) return { Y_MIN: 0.08, Y_MAX: 0.92 }; // mobile: more vertical space
+  if (h <= 480) return { Y_MIN: 0.08, Y_MAX: 0.1 }; // mobile: more vertical space
   if (h < 1200) return { Y_MIN: 0.10, Y_MAX: 0.90 }; // tablet: generous
   return { Y_MIN: 0.05, Y_MAX: 0.11 }; // desktop: default
 }
@@ -210,6 +210,7 @@ function getResponsiveLineWidth() {
 // Responsive label right padding for bounding (proportional to label width)
 export function getResponsiveGrandchildLabelRightPadding(labelWidth) {
   const w = window.innerWidth || 1920;
+  if (w <= 400) return Math.max(900, labelWidth * 0.10);
   if (w <= 480) return Math.max(600, labelWidth * 0.12);
   if (w < 1200) return Math.max(12, labelWidth * 0.15);
   return Math.max(16, labelWidth * 0.18);
@@ -217,6 +218,7 @@ export function getResponsiveGrandchildLabelRightPadding(labelWidth) {
 
 export function getResponsiveChildLabelRightPadding(labelWidth) {
   const w = window.innerWidth || 1920;
+  if (w <= 400) return Math.max(500, labelWidth * 0.10);
   if (w <= 480) return Math.max(300, labelWidth * 0.10);
   if (w < 1200) return Math.max(10, labelWidth * 0.13);
   return Math.max(14, labelWidth * 0.16);
@@ -225,7 +227,7 @@ export function getResponsiveChildLabelRightPadding(labelWidth) {
 // Responsive max width ratio for description box
 function getResponsiveDescriptionWidthRatio() {
   const w = window.innerWidth || 1920;
-  if (w <= 480) return 0.85; // mobile: much wider
+  if (w <= 480) return 0.95; // mobile: much wider
   return 0.45; // desktop: default
 }
 
@@ -241,7 +243,7 @@ function getResponsiveAboutWidthRatio() {
 function getResponsiveTextLineHeight() {
   const w = window.innerWidth || 1920;
   if (w > 1920) return 26;
-  if (w <= 480) return 32; // mobile: tighter
+  if (w <= 480) return 40; // mobile: tighter
   if (w < 1200) return 35; // tablet: slightly tighter
   return 40; // desktop: default
 }
