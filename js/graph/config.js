@@ -90,9 +90,8 @@ export const MEDIA = {
 export const DESCRIPTION = {
   TEXT_MAX_WIDTH_RATIO: getResponsiveDescriptionWidthRatio(), // responsive max width
   FONT_SIZE: getResponsiveFontSize(), // font size for description text (responsive)
-  LINE_HEIGHT: getResponsiveDescriptionLineHeight(), // responsive line height
+  LINE_HEIGHT: getResponsiveTextLineHeight(), // unified responsive line height
   PADDING: 18, // space between text and corner brackets
-  // Responsive vertical spawn area
   Y_SPAWN: getResponsiveDescriptionYSpawn(), // responsive vertical spawn area
   DESKTOP: {
     X_FIXED: 0.98, // fixed horizontal position (far right)
@@ -128,9 +127,8 @@ export const TEXT = {
 export const ABOUT = {
   TEXT_MAX_WIDTH_RATIO: getResponsiveAboutWidthRatio(), // responsive max width
   FONT_SIZE: getResponsiveFontSize(),
-  LINE_HEIGHT: getResponsiveDescriptionLineHeight(), // responsive line height (same as DESCRIPTION)
+  LINE_HEIGHT: getResponsiveTextLineHeight(), // unified responsive line height
   PADDING: 18,
-  // Position offset from center (as ratio of canvas height)
   Y_OFFSET: 0.12 // positive = lower on screen
 };
 
@@ -189,7 +187,7 @@ function getResponsiveLineHeight() {
 
 function getResponsiveMediaSize() {
   const w = window.innerWidth || 1920;
-  if (w > 1920) return 700;
+  if (w > 1920) return 600;
   if (w < 1200) return 600;
   return 1000;
 }
@@ -197,7 +195,7 @@ function getResponsiveMediaSize() {
 // Responsive rectangle size
 function getResponsiveRect() {
   const w = window.innerWidth || 1920;
-  if (w > 1920) return { w: 13, h: 23 };
+  if (w > 1920) return { w: 12, h: 20 };
   if (w < 1200) return { w: 20, h: 36 };
   return { w: 21, h: 38
    };
@@ -234,18 +232,11 @@ function getResponsiveAboutWidthRatio() {
   return 0.52; // desktop: default
 }
 
-// Responsive line height for description box
-function getResponsiveDescriptionLineHeight() {
+// Responsive line height for description and about box
+function getResponsiveTextLineHeight() {
   const w = window.innerWidth || 1920;
+  if (w > 1920) return 26;
   if (w <= 480) return 32; // mobile: tighter
-  if (w < 1200) return 26; // tablet: slightly tighter
-  return 32; // desktop: default
-}
-
-// Responsive line height for about box
-function getResponsiveAboutLineHeight() {
-  const w = window.innerWidth || 1920;
-  if (w <= 480) return 24; // mobile: tighter
   if (w < 1200) return 28; // tablet: slightly tighter
   return 40; // desktop: default
 }
