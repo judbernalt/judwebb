@@ -129,7 +129,6 @@ content:
         type: text
         required: true
         description: About section text
-      - name: font
       - name: cvUrl
         label: CV (PDF) [MAX 8 MB]
         type: file
