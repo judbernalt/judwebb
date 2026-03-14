@@ -4,7 +4,7 @@
 export const MAIN_BOUNDS = { xPad: 0.1, yPad: 0.1 };
 
 // Visual elements
-export const RECT = { w: 20, h: 36 }; // small vertical rectangle
+export const RECT = getResponsiveRect(); // small vertical rectangle
 export const LINE_WIDTH = 2; // connection lines
 
 // Main nodes behavior
@@ -161,23 +161,31 @@ export const SLUG = {
 // Responsive scaling helpers
 function getResponsiveFontSize() {
   const w = window.innerWidth || 1920;
-  if (w > 1920) return 15 + Math.min(6, (w - 1920) / 320); // max 21px
+  if (w > 1920) return 18 + Math.min(6, (w - 1920) / 320); // max 21px
   if (w < 1200) return 14;
   return 15;
 }
 
 function getResponsiveLineHeight() {
   const w = window.innerWidth || 1920;
-  if (w > 1920) return 32 + Math.min(8, (w - 1920) / 320); // max 40px
+  if (w > 1920) return 22 + Math.min(8, (w - 1920) / 320); // max 40px
   if (w < 1200) return 28;
   return 32;
 }
 
 function getResponsiveMediaSize() {
   const w = window.innerWidth || 1920;
-  if (w > 1920) return 800;
+  if (w > 1920) return 700;
   if (w < 1200) return 600;
   return 1000;
+}
+
+// Responsive rectangle size
+function getResponsiveRect() {
+  const w = window.innerWidth || 1920;
+  if (w > 1920) return { w: 13, h: 23 };
+  if (w < 1200) return { w: 20, h: 36 };
+  return { w: 18, h: 32 };
 }
 
 
