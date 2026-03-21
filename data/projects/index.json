@@ -101,29 +101,64 @@
     ],
     "media": [
       {
-        "type": "image",
+        "type": "video",
         "src": "media/visuals/son_de_rosas/son_de_rosas01.gif",
-        "alt": "LIVE SON DE ROSAS"
+        "alt": "LIVE SON DE ROSAS",
+        "externalLink": "https://www.youtube.com/embed/hLezviM41qk?si=sumbN6DTU0u7BXf4"
       },
       {
-        "type": "image",
-        "src": "media/visuals/son_de_rosas/son_de_rosas02.gif",
-        "alt": "LIVE SON DE ROSAS"
-      },
-      {
-        "type": "image",
+        "type": "video",
         "src": "media/visuals/son_de_rosas/son_de_rosas03.gif",
-        "alt": "LIVE SON DE ROSAS"
+        "alt": "LIVE SON DE ROSAS",
+        "externalLink": "https://www.youtube.com/embed/O7JkCALoenI?si=q09UaK566g_0gwaa"
       },
       {
-        "type": "image",
+        "type": "video",
         "src": "media/visuals/son_de_rosas/son_de_rosas04.gif",
-        "alt": "LIVE SON DE ROSAS"
+        "alt": "LIVE SON DE ROSAS",
+        "externalLink": "https://www.youtube.com/embed/ofbra1Wu5K0?si=-ISf68nz94OrTzbn"
       },
       {
-        "type": "image",
+        "type": "video",
         "src": "media/visuals/son_de_rosas/son_de_rosas05.gif",
-        "alt": "LIVE SON DE ROSAS"
+        "alt": "LIVE SON DE ROSAS",
+        "externalLink": "https://www.youtube.com/embed/RgEjiXKfvr4?si=HEbMmNIiXvOS6Es-"
+      },
+      {
+        "type": "video",
+        "src": "media/visuals/son_de_rosas/son_de_rosas11.gif",
+        "alt": "LIVE SON DE ROSAS",
+        "externalLink": "https://www.youtube.com/embed/Gyf8UdHDZ1Q?si=gf9rOGS_MPqsytVs"
+      },
+      {
+        "type": "video",
+        "src": "media/visuals/son_de_rosas/son_de_rosas06.gif",
+        "alt": "LIVE SON DE ROSAS",
+        "externalLink": "https://www.youtube.com/embed/BBZ3JvZugEM?si=7RWCPw2cMlTahzNR"
+      },
+      {
+        "type": "video",
+        "src": "media/visuals/son_de_rosas/son_de_rosas07.gif",
+        "alt": "LIVE SON DE ROSAS",
+        "externalLink": "https://www.youtube.com/embed/UNDLaRGWVds?si=Uwrlw3i0tUHAUH5B"
+      },
+      {
+        "type": "video",
+        "src": "media/visuals/son_de_rosas/son_de_rosas09.gif",
+        "alt": "LIVE SON DE ROSAS",
+        "externalLink": "https://www.youtube.com/embed/8qxc5gbsX6g?si=takY3_EfkB_064lz"
+      },
+      {
+        "type": "video",
+        "src": "media/visuals/son_de_rosas/son_de_rosas10.gif",
+        "alt": "LIVE SON DE ROSAS",
+        "externalLink": "https://www.youtube.com/embed/EX5X7Nwf6gs?si=b8SBNiAFbRCUZqyP"
+      },
+      {
+        "type": "video",
+        "src": "media/visuals/son_de_rosas/son_de_rosas12.gif",
+        "alt": "LIVE SON DE ROSAS",
+        "externalLink": "https://www.youtube.com/embed/iaQWczt9WIw?si=aTdBq2loXyaML4cE"
       }
     ]
   },
