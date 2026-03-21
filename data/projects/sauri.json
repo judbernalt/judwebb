@@ -15,13 +15,20 @@
     {
       "type": "video",
       "src": "media/visuals/sauri/sauri02.gif",
-      "alt": "SAURI"
+      "alt": "SAURI",
+      "externalLink": "www.youtube.com/embed/KbuOl64yBr0?si=ytPz01AjqX3uSbPR"
     },
     {
       "type": "video",
       "src": "media/visuals/sauri/sauri03.gif",
       "alt": "SAURI",
       "externalLink": "https://www.youtube.com/embed/anygjeD7V1w?si=6Zy0xE1ptWGSwrIo"
+    },
+    {
+      "type": "video",
+      "src": "media/visuals/sauri/sauri04.gif",
+      "alt": "SAURI",
+      "externalLink": "https://www.youtube.com/embed/3VxY4EIJ7T4?si=ZhMiI3waw3Lga8nH"
     }
   ]
 }
