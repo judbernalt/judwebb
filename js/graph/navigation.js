@@ -737,7 +737,13 @@ function handlePointerDown(e, canvas) {
   }
   
   if (n.kind === "media") {
-    // Start tracking for click vs drag detection
+    // Su mobile: apri subito il media
+    if (isMobileDevice()) {
+      enterGalleryMode(idx);
+      e.preventDefault();
+      return;
+    }
+    // Su desktop: click vs drag
     state.pendingMediaClick = idx;
     state.pendingMediaStartX = x;
     state.pendingMediaStartY = y;
@@ -1053,12 +1059,12 @@ function getFontSizeForIndex(i) {
 }
 
 function handlePointerUp() {
-  // Check if this was a click on media (not a drag)
-  if (state.pendingMediaClick >= 0 && !state.mediaIsDragging) {
-    // It was a click, open gallery
-    enterGalleryMode(state.pendingMediaClick);
+  // Su desktop: click apre media se non è drag
+  if (!isMobileDevice()) {
+    if (state.pendingMediaClick >= 0 && !state.mediaIsDragging) {
+      enterGalleryMode(state.pendingMediaClick);
+    }
   }
-  
   // Reset pending media state
   state.pendingMediaClick = -1;
   state.pendingMediaStartX = 0;
