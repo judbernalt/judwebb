@@ -787,7 +787,15 @@ function getNodeAlpha(n, i, isMain) {
     alpha = isMain && i !== state.mainNodeIndexes[state.focusKey] ? CFG.MAIN.DIM_ALPHA : 1;
   } else if (state.mode === "category") {
     if (isMain) alpha = i === state.mainNodeIndexes.PROJECTS ? 1 : CFG.MAIN.DIM_ALPHA;
-    else if (n.kind === "child") alpha = i === state.selectedCategoryIndex ? 1 : CFG.MAIN.DIM_ALPHA;
+    else if (n.kind === "child") {
+      if (i === state.selectedCategoryIndex) {
+        alpha = 1;
+      } else {
+        // On mobile, make non-selected children nearly invisible so grandchildren stay on top
+        const isMobileView = window.innerWidth <= CFG.MEDIA.MOBILE_BREAKPOINT;
+        alpha = isMobileView ? 0.05 : CFG.MAIN.DIM_ALPHA;
+      }
+    }
     else if (n.kind === "grandchild") alpha = n.parentIndex === state.selectedCategoryIndex ? 1 : CFG.MAIN.DIM_ALPHA;
   } else if (state.mode === "project") {
     if (isMain) alpha = i === state.mainNodeIndexes.PROJECTS ? 1 : 0.1;
