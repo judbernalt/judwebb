@@ -2,7 +2,7 @@
 
 ## Short statement
 
-this page was designed and developed by [nicolò Baldi](https://niente010.github.io/virtualscape/) for judith bernalt, VJ and multimedia artist.
+this page was designed and developed by [nicolò Baldi](https://niente010.github.io/virtualscape/) for judith bernal, VJ and multimedia artist.
 
 the entire design revolves around the concept of the virtual interface as the perfect environment in which to play with the flexible and non-linear placement of elements.
 in fact, the website is structured as a node-based 2D space through which visitors can navigate and occasionally personalize the visualization itself by displacing elements around. i was looking for a fluid and dynamic navigation, that would give the feeling of scraping a kind of database or archive by hunting for a specific information.
@@ -17,6 +17,4 @@ btw, the whole collection of visual references can be found [here](https://www.a
 ## license
 the website is licensed by GNU General Public License, while all contents (images, audio, video) are copyrighted by judith bernal.
 
-nicolò baldi
-
-march 2026
+nicolò baldi - march 2026
