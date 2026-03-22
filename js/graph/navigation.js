@@ -1157,6 +1157,13 @@ function activateVirtualscapeRedirect() {
   // Mark portal as active to disable interactions
   state.portalActivated = true;
   
+  // Disable home button
+  const homeButton = document.querySelector('.home-button');
+  if (homeButton) {
+    homeButton.disabled = true;
+    homeButton.style.pointerEvents = 'none';
+  }
+  
   // Disable further clicks
   button.disabled = true;
   
@@ -1192,10 +1199,20 @@ function activateVirtualscapeRedirect() {
       }, 3000);
       return;
     }
-  }, 300);
+  }, 500);
 }
 
 export function navigateToHome() {
+  // Reset portal state
+  state.portalActivated = false;
+  
+  // Re-enable home button
+  const homeButton = document.querySelector('.home-button');
+  if (homeButton) {
+    homeButton.disabled = false;
+    homeButton.style.pointerEvents = '';
+  }
+  
   resetToHome();
 }
 
