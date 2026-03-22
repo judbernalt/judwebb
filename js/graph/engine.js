@@ -41,7 +41,10 @@ export const state = {
   pendingMediaClick: -1,      // Index of media that might be clicked
   pendingMediaStartX: 0,      // Start position for drag detection
   pendingMediaStartY: 0,
-  mediaIsDragging: false      // True if user started dragging
+  mediaIsDragging: false,      // True if user started dragging
+
+  // Portal state
+  portalActivated: false      // True when Virtualscape portal is active
 };
 
 // Helper to check if a node can resume movement after hover

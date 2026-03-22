@@ -1,10 +1,17 @@
 // Graph visualization - Public API
 import { state, step, draw, computeMainAnchors, clamp, cleanupGifElements } from './graph/engine.js';
-import { setupInteraction, createMainNode, setupGalleryListeners } from './graph/navigation.js';
+import { setupInteraction, createMainNode, setupGalleryListeners, setupVirtualscapePortal, updateVirtualscapePortalVisibility, navigateToHome } from './graph/navigation.js';
 import * as CFG from './graph/config.js';
 
 export function startGraph(canvas) {
   stopGraph();
+  
+  // Check if returning from Virtualscape redirect
+  if (sessionStorage.getItem('redirectedToVirtualscape')) {
+    sessionStorage.removeItem('redirectedToVirtualscape');
+    // Navigate to home after graph initialization
+    setTimeout(() => navigateToHome(), 100);
+  }
   
   state.ctx = canvas.getContext("2d");
   resizeCanvasToDisplaySize(canvas);
@@ -46,6 +53,9 @@ export function startGraph(canvas) {
   // Setup gallery mode listeners (ESC key, backdrop click)
   setupGalleryListeners();
   
+  // Setup Virtualscape portal (ABOUT page)
+  setupVirtualscapePortal();
+  
   // Start animation loop
   state.lastTimestamp = performance.now();
   state.animationHandle = requestAnimationFrame(tick);
@@ -77,6 +87,9 @@ function tick(ts) {
   // Update physics and render
   step(dt);
   draw();
+  
+  // Update portal visibility based on current page
+  updateVirtualscapePortalVisibility();
   
   state.animationHandle = requestAnimationFrame(tick);
 }

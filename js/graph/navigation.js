@@ -709,6 +709,12 @@ export function setupInteraction(canvas) {
 }
 
 function handlePointerDown(e, canvas) {
+  // Block all interactions if portal is active
+  if (state.portalActivated) {
+    e.preventDefault();
+    return;
+  }
+  
   const rect = canvas.getBoundingClientRect();
   const x = (e.clientX - rect.left) * (canvas.width / rect.width);
   const y = (e.clientY - rect.top) * (canvas.height / rect.height);
@@ -913,6 +919,11 @@ function handleDrag(x, y, rect) {
 }
 
 function handleHover(x, y, rect) {
+  // Don't update hover if portal is active
+  if (state.portalActivated) {
+    return;
+  }
+  
   let hitIndex = hitTestAtScreen(x, y);
   
   // Filter out non-interactive nodes in project mode
@@ -1111,5 +1122,80 @@ function handlePointerLeave() {
   }
   state.hoveredNodeIndex = -1;
   window.clearHoverBox?.();
+}
+
+// ============= VIRTUALSCAPE PORTAL (ABOUT PAGE) =============
+
+export function setupVirtualscapePortal() {
+  const portal = document.getElementById('virtualscape-portal');
+  const button = portal?.querySelector('.portal-button');
+  
+  if (!button) return;
+  
+  button.addEventListener('click', () => {
+    activateVirtualscapeRedirect();
+  });
+}
+
+export function updateVirtualscapePortalVisibility() {
+  const portal = document.getElementById('virtualscape-portal');
+  if (!portal) return;
+  
+  // Show portal only on ABOUT page
+  const isAboutPage = state.mode === "content" && state.focusKey === "ABOUT";
+  portal.hidden = !isAboutPage;
+}
+
+function activateVirtualscapeRedirect() {
+  const portal = document.getElementById('virtualscape-portal');
+  const button = portal?.querySelector('.portal-button');
+  const overlay = portal?.querySelector('.portal-overlay');
+  const text = portal?.querySelector('.portal-text');
+  
+  if (!button || !overlay || !text) return;
+  
+  // Mark portal as active to disable interactions
+  state.portalActivated = true;
+  
+  // Disable further clicks
+  button.disabled = true;
+  
+  // Show text and activate overlay animation
+  text.classList.add('active');
+  overlay.classList.add('active');
+  button.classList.add('inactive'); // Fade out button instead of hiding
+  
+  // Add characters from "redirecting" one by one, then 3 periods
+  const word = 'redirecting';
+  let charIndex = 0;
+  text.textContent = '';
+  
+  const charInterval = setInterval(() => {
+    if (charIndex < word.length) {
+      // Add characters from "redirecting"
+      text.textContent += word[charIndex];
+      charIndex++;
+    } else if (charIndex < word.length + 3) {
+      // Add 3 periods one by one (charIndex goes from 11 to 13)
+      text.textContent += '.';
+      charIndex++;
+    } else {
+      // All characters done
+      clearInterval(charInterval);
+      
+      // Schedule redirect with delay
+      setTimeout(() => {
+        // Mark that we're redirecting externally (for history management)
+        sessionStorage.setItem('redirectedToVirtualscape', 'true');
+        // Redirect using location.href (same tab navigation)
+        window.location.href = 'https://niente010.github.io/virtualscape/';
+      }, 3000);
+      return;
+    }
+  }, 300);
+}
+
+export function navigateToHome() {
+  resetToHome();
 }
 

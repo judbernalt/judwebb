@@ -26,6 +26,12 @@
         <div class="gallery-caption"></div>
       </div>
     </div>
+    <!-- Virtualscape portal button (appears on ABOUT page) -->
+    <div id="virtualscape-portal" class="virtualscape-portal" hidden>
+      <div class="portal-text"></div>
+      <button class="portal-button" aria-label="Enter Virtualscape"></button>
+      <div class="portal-overlay"></div>
+    </div>
     <!-- Cursor overlay (drawn above everything, click-through) -->
     <canvas id="cursor-canvas" class="cursor-canvas" aria-hidden="true"></canvas>
 
@@ -36,7 +42,7 @@
     <footer class="site-footer" aria-hidden="true">
       <div id="cursor-xy" class="cursor-xy">X _ Y</div>
     </footer>
-
+ 
     <script type="module" src="js/main.js"></script>
   </body>
   </html>

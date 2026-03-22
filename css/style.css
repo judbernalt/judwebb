@@ -99,7 +99,7 @@ a, button, canvas { cursor: none !important; }
   align-items: center;
   justify-content: center;
   color: var(--fg);
-  z-index: 101;
+  z-index: 99;
   pointer-events: none; /* let clicks pass to canvas */
 }
 
@@ -248,4 +248,123 @@ a, button, canvas { cursor: none !important; }
   max-width: 600px;
   line-height: 1.5;
   margin-top: 8px;
+}
+
+/* ============= VIRTUALSCAPE PORTAL ============= */
+
+.virtualscape-portal {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  z-index: 100;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0;
+}
+
+.virtualscape-portal[hidden] {
+  display: none !important;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Base dimensions responsive to screen size (like graph rectangle nodes) */
+.portal-button {
+  width: 12px;
+  height: 20px;
+  background: var(--fg);
+  border: none;
+  padding: 0;
+  cursor: none;
+  animation: portal-blink 1.5s ease-in-out infinite;
+  flex-shrink: 0;
+  opacity: 1;
+  transition: margin-left 0.2s ease;
+  margin-left: auto;
+  z-index: 103;
+  position: relative;
+  pointer-events: auto;
+}
+
+.portal-button.inactive {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Responsive scaling for different screen sizes */
+@media (max-width: 1200px) {
+  .portal-button {
+    width: 11px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .portal-button {
+    width: 11px;
+    height: 20px;
+  }
+  
+  .virtualscape-portal {
+    bottom: 12px;
+    right: 12px;
+  }
+}
+
+/* Blinking animation */
+@keyframes portal-blink {
+  0%, 49% {
+    opacity: 1;
+  }
+  50%, 100% {
+    opacity: 0;
+  }
+}
+
+/* Black overlay that expands from left to right */
+.portal-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  z-index: 102;
+  transform: scaleX(0);
+  transform-origin: left center;
+  display: none;
+  pointer-events: none;
+}
+
+.portal-overlay.active {
+  display: block;
+  animation: portal-expand 2.5s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+}
+
+@keyframes portal-expand {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+/* Redirecting text - grows to the left of button */
+.portal-text {
+  color: var(--fg);
+  font-size: 12px;
+  font-family: "StraightNarrow", system-ui, sans-serif;
+  letter-spacing: 1px;
+  display: none;
+  min-width: 0;
+  flex-grow: 0;
+  text-align: right;
+  z-index: 103;
+  height: 20px;
+  align-items: center;
+  position: relative;
+}
+
+.portal-text.active {
+  display: flex;
 }
